@@ -6,7 +6,10 @@ const fs = require('fs');
 const UploadController = require('../controllers/uploadController');
 
 // Ensure uploads directory exists
-const uploadDir = 'uploads/';
+const uploadDir = process.env.NODE_ENV === 'production' 
+  ? '/tmp/uploads/' 
+  : path.join(__dirname, '../../uploads/');
+
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
