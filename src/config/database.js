@@ -7,6 +7,7 @@ const pool = new Pool({
   database: process.env.DB_NAME || 'operations_control_tower',
   user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD,
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
 });
 
 // Test connection
